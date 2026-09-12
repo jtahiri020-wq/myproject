@@ -31,7 +31,7 @@ jobs:
         run: |
           docker run -d --name searxng \
             -p 8080:8080 \
-            -v "$PWD/searxng-config:/etc/searxng" \
+            -v "$PWD/searxng-tool/searxng-config:/etc/searxng" \
             searxng/searxng:latest
 
           echo "انتظار جاهزية SearXNG..."
@@ -53,8 +53,8 @@ jobs:
 
       - name: تشغيل أداة البحث
         run: |
-          python3 find_social_pages.py \
-            --input "${{ inputs.csv_path }}" \
+          python3 searxng-tool/find_social_pages.py \
+            --input "searxng-tool/${{ inputs.csv_path }}" \
             --output "results.csv" \
             --name-column "${{ inputs.name_column }}" \
             --city-column "${{ inputs.city_column }}" \
