@@ -43,6 +43,9 @@ jobs:
             sleep 2
           done
 
+          echo "اختبار بحث حقيقي للتأكد من وجود نتائج فعلية..."
+          curl -s "http://localhost:8080/search?q=facebook&format=json" | python3 -c "import json,sys; data=json.load(sys.stdin); print('عدد النتائج:', len(data.get('results', [])))"
+
       - name: إعداد Python
         uses: actions/setup-python@v5
         with:
@@ -52,8 +55,10 @@ jobs:
         run: pip install requests rapidfuzz
 
       - name: تشغيل أداة البحث
+        env:
+          PYTHONUNBUFFERED: "1"
         run: |
-          python3 searxng-tool/find_social_pages.py \
+          python3 -u searxng-tool/find_social_pages.py \
             --input "searxng-tool/${{ inputs.csv_path }}" \
             --output "results.csv" \
             --name-column "${{ inputs.name_column }}" \
