@@ -1,0 +1,17 @@
+# هذا الملف يُدمج فوق الإعدادات الافتراضية لـ SearXNG (use_default_settings: true)
+# لا حاجة لتعديل أي شيء يدويًا بعد أول تشغيل — JSON مفعّل من البداية.
+
+use_default_settings: true
+
+general:
+  instance_name: "searxng-local"
+
+server:
+  # يمكنك تغيير هذا المفتاح لأي نص عشوائي آخر، غير ضروري لكن مستحسن
+  secret_key: "d3d523d8e95f749070efc0989717a460"
+  limiter: false
+
+search:
+  formats:
+    - html
+    - json

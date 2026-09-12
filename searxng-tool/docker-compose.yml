@@ -1,0 +1,12 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./searxng-config:/etc/searxng:rw
+      # ملاحظة: searxng-config/settings.yml مُعدّ مسبقًا لتفعيل JSON تلقائيًا
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+    restart: unless-stopped
