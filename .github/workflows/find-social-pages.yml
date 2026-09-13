@@ -15,6 +15,14 @@ on:
         description: "اسم عمود المدينة"
         required: true
         default: "المدينة"
+      facebook_column:
+        description: "اسم العمود الأصلي لروابط فيسبوك (سيُملأ فيه فقط الناقص)"
+        required: true
+        default: "فيسبوك"
+      instagram_column:
+        description: "اسم العمود الأصلي لروابط انستغرام (سيُملأ فيه فقط الناقص)"
+        required: true
+        default: "انستغرام"
       delay:
         description: "ثواني الانتظار بين كل بحث (لا تقل عن 1)"
         required: false
@@ -63,6 +71,8 @@ jobs:
             --output "results.csv" \
             --name-column "${{ inputs.name_column }}" \
             --city-column "${{ inputs.city_column }}" \
+            --facebook-column "${{ inputs.facebook_column }}" \
+            --instagram-column "${{ inputs.instagram_column }}" \
             --url "http://localhost:8080" \
             --delay "${{ inputs.delay }}"
 
